@@ -5,20 +5,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link style="stylesheet" src="./style.css">
+    <!-- global bootstrap link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <header>
+    <main class="container-fluid vh-100">
+        <!-- at the top of the page -->
+        <header class="jumbotronHeader container-fluid text-center">
+            <h1>My Team</h1>
+        </header>
 
-            <!-- use to make an email open and add name to TO field -->
+        <!-- use to make an email open and add name to TO field -->
         <!-- <a href = "mailto: abc@example.com">Send Email</a> -->
-
-
-
-    <script href="../index.js"></script>
+        <div class="container-fluid flex-wrap">
+            <div class="row flex-wrap" id="teamContainer">
+                <!-- 5 day forcast -->
+                <section class="teamContentClass container-fluid flex-wrap" id="teamContentId">
+                    <div class="card-group">
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="../index.js"></script>
 </body>
 
 </html>

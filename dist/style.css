@@ -1,0 +1,13 @@
+header {
+    height: 25vh;
+    background-color: burlywood;
+    padding: 2vh;
+}
+h1 {
+    padding: 4vh;
+    font-size: 75px;
+}
+section {
+    height:75vh;
+    background-color: black;
+}
