@@ -98,6 +98,7 @@ THEN I exit the application, and the HTML is generated
 *export constructor function called employee
 *add validation to ensure that user input is in the proper format.
     *.prompt can use validation (use a condition)
+*constructor function (classes) to create a new Manager and pass the information
 *production dependency on inquirer- [Inquirer](https://www.npmjs.com/package/inquirer) for collecting input from the user
 *dev dependency on jest- [Jest](https://www.npmjs.com/package/jest) for running the unit tests
 
