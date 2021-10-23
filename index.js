@@ -1,6 +1,6 @@
 //packages being used
 const inquirer = require('inquirer');
-const {} = require('fs');
+const fs = require('fs');
 //const jest = require('jest');
 
 //classes being used
