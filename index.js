@@ -8,8 +8,7 @@ const Engineer = require('./lib/Engineer');
 const Employee = require('./lib/Employee');
 const Intern = require('./lib/Intern');
 // //final html being created
-const create = require('./src/template.js');
-
+const attempt = ('./src/template.js');
 //team needs to be an array to pull from for the cards
 const team = [];
 
@@ -40,7 +39,6 @@ function teamMemberList() {
             }
         });
 };
-const attempt = ('./src/template.js');
 
 function writeToFile(response) {
     fs.writeFile(attempt, JSON.stringify(response, null, '\t'), (err) => {
@@ -84,10 +82,10 @@ function manager() {
         .then((response) => {
             //console.log(response);
             const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
-            console.log(manager);
+            //console.log(manager);
             team.push(manager);
-            console.log(team);
-            writeToFile(response);
+            //console.log(team);
+            appendFile(response);
             teamMemberList();
         });
 };
@@ -122,9 +120,9 @@ function engineer() {
         .then((response) => {
             //console.log(response);
             const engineer = new Engineer(response.name, response.id, response.email, response.github);
-            console.log(engineer);
+            //console.log(engineer);
             team.push(engineer);
-            console.log(team);
+            //console.log(team);
             appendFile(response);
             teamMemberList();
         });
@@ -154,9 +152,9 @@ function employee() {
         .then((response) => {
             //console.log(response);
             const employee = new Employee(response.name, response.id, response.email);
-            console.log(employee);
+            //console.log(employee);
             team.push(employee);
-            console.log(team);
+            //console.log(team);
             appendFile(response);
             teamMemberList();
         });
@@ -191,16 +189,16 @@ function intern() {
         .then((response) => {
             //console.log(response);
             const intern = new Intern(response.name, response.id, response.email, response.school);
-            console.log(intern);
+            //console.log(intern);
             team.push(intern);
-            console.log(team);
+            //console.log(team);
             appendFile(response);
             teamMemberList();
         });
 };
 
 function finishTeam() {
-    //fs.writeToFile("./dist/team.html");
+    writeToFile(team);
     console.log(`Team has been created: ${team}`);
 };
 
