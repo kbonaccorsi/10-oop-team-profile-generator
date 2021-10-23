@@ -12,24 +12,27 @@
 </head>
 
 <body>
+
     <main class="container-fluid vh-100">
         <!-- at the top of the page -->
         <header class="jumbotronHeader container-fluid text-center">
             <h1>My Team</h1>
         </header>
-
-        <!-- use to make an email open and add name to TO field -->
-        <!-- <a href = "mailto: abc@example.com">Send Email</a> -->
-        <div class="container-fluid flex-wrap">
-            <div class="row flex-wrap" id="teamContainer">
-                <!-- 5 day forcast -->
-                <section class="teamContentClass container-fluid flex-wrap" id="teamContentId">
-                    <div class="card-group">
-                    </div>
-                </section>
+        <section class="container-fluid d-flex flex-row flex-wrap justify-content-center align-content-center h-auto">
+            <!-- Each team member has their own card of information -->
+            <div class="card text-center border-light m-2">
+                <div class="card-header">
+                    <h5 class="card-title">Team Member's Role</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Information Listed</p>
+                    <a href="mailto: abc@example.com">Send Email</a>
+                </div>
             </div>
-        </div>
+            
+        </section>
     </main>
+
     <script type="text/javascript" src="../index.js"></script>
 </body>
 

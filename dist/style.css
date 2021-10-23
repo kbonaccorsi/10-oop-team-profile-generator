@@ -1,13 +1,29 @@
+main {
+    background-color: grey;
+    padding: 15px;
+}
+
 header {
     height: 25vh;
+    width: 100vw;
     background-color: burlywood;
     padding: 2vh;
+    margin: 0 auto;
+    float: none;
 }
+
 h1 {
     padding: 4vh;
     font-size: 75px;
 }
+
 section {
-    height:75vh;
-    background-color: black;
+    padding: 15px;
+}
+
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    width: 30em;
 }
