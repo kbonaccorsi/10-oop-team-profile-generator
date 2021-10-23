@@ -12,9 +12,9 @@ SO THAT I have quick access to their emails and GitHub profiles
 
 GIVEN a command-line application that accepts user input
 
-npm install inquirer
-npm install jest
-node index
+<!-- npm install inquirer -->
+<!-- npm install jest -->
+<!-- node index -->
 
 
 WHEN I am prompted for my team members and their information
