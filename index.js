@@ -1,56 +1,61 @@
 //packages being used
 const inquirer = require('inquirer');
+const jest = require('jest');
 const fs = require('fs');
-//const jest = require('jest');
-
 //classes being used
-// const Employee = require('./lib/Employee');
-// const Engineer = require('./lib/Engineer');
-// const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Employee = require('./lib/Employee');
+const Intern = require('./lib/Intern');
+// //final html being created
+const create = require('./src/template.js');
+
+//team needs to be an array to pull from for the cards
+const team = [];
+
 
 //prompt for adding team members
-// function teamMemberList() {
-//     inquirer.prompt([
-//         {
-//             type: 'list',
-//             name: 'memberType',
-//             message: 'Please build your team.',
-//             choices: ["manager", "engineer", "employee", "intern", "done"],
-//         }
-//     ])
-//         .then((response) => {
-//             switch (response.memberType) {
-//                 case ("manager"): manager()
-//                     break;
-//                 case ("engineer"): engineer()
-//                     break;
-//                 case ("employee"): employee()
-//                     break;
-//                 case ("intern"): intern()
-//                     break;
-//                 case ("done"): finishTeam()
-//                     break;
-//                 default:
-//             }
-//         });
-// };
+function teamMemberList() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'memberType',
+            message: 'Choose a teamate to add.',
+            choices: ["manager", "engineer", "employee", "intern", "done"],
+        }
+    ])
+        .then((response) => {
+            switch (response.memberType) {
+                case ("manager"): manager()
+                    break;
+                case ("engineer"): engineer()
+                    break;
+                case ("employee"): employee()
+                    break;
+                case ("intern"): intern()
+                    break;
+                case ("done"): finishTeam()
+                    break;
+                default:
+            }
+        });
+};
+const attempt = ('./src/template.js');
 
-// USE new KEYWORD TO CREATE A NEW TEAM MEMBER WHEN NEEDED
 function writeToFile(response) {
-    let manager = new Manager(response);
-    const attempt = ('./src/template.js');
+    fs.writeFile(attempt, JSON.stringify(response, null, '\t'), (err) => {
+        err ? console.log(err) : console.log("Success!")
+    });
+}
 
-    fs.writeFile(attempt, manager, (err) => {
+function appendFile(response) {
+    fs.appendFile(attempt, JSON.stringify(response, null, '\t'), (err) => {
         err ? console.log(err) : console.log("Success!")
     });
 }
 
 function manager() {
-    
-    
-inquirer
-    .prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -60,7 +65,7 @@ inquirer
         {
             type: 'number',
             name: 'id',
-            message: 'What is the manager\'s employee id number?',
+            message: 'What is the manager\'s id number?',
             //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
         },
         {
@@ -76,98 +81,127 @@ inquirer
             //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
         },
     ])
-    .then((response) => {
-        console.log(response);
-        writeToFile(response);
-    });
-                //teamMemberList();
+        .then((response) => {
+            //console.log(response);
+            const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
+            console.log(manager);
+            team.push(manager);
+            console.log(team);
+            writeToFile(response);
+            teamMemberList();
+        });
 };
 
-manager();
-// function employee() {
-//     inquirer.prompt([
-//     type: 'list',
-//     name: 'username',
-//     message: 'What team member do you want to add?',
-//     * `name`
+function engineer() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the engineer\'s name?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: 'What is the engineer\'s id number?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the engineer\'s email address?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is the engineer\'s GitHub username?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+    ])
+        .then((response) => {
+            //console.log(response);
+            const engineer = new Engineer(response.name, response.id, response.email, response.github);
+            console.log(engineer);
+            team.push(engineer);
+            console.log(team);
+            appendFile(response);
+            teamMemberList();
+        });
+};
 
-//     * `id`
+function employee() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the employee\'s name?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: 'What is the employee\'s id number?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the employee\'s email address?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+    ])
+        .then((response) => {
+            //console.log(response);
+            const employee = new Employee(response.name, response.id, response.email);
+            console.log(employee);
+            team.push(employee);
+            console.log(team);
+            appendFile(response);
+            teamMemberList();
+        });
+};
+function intern() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the intern\'s name?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: 'What is the intern\'s id number?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the intern\'s email address?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'What is the intern\'s school?',
+            //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
+        },
+    ])
+        .then((response) => {
+            //console.log(response);
+            const intern = new Intern(response.name, response.id, response.email, response.school);
+            console.log(intern);
+            team.push(intern);
+            console.log(team);
+            appendFile(response);
+            teamMemberList();
+        });
+};
 
-//     * `email`
+function finishTeam() {
+    //fs.writeToFile("./dist/team.html");
+    console.log(`Team has been created: ${team}`);
+};
 
-//     * `getName()`
-
-//     * `getId()`
-
-//     * `getEmail()`
-
-//     * `getRole()` & mdash; returns`'Employee'`
-// ])
-
-//     .then(answers)
-//     teamMemberList();
-// }
-
-// function engineer() {
-//     inquirer.prompt([
-//     type: 'list',
-//     name: 'username',
-//     message: 'What team member do you want to add?',
-//     `name`
-
-//     * `id`
-
-//     * `email`
-
-//     * `getName()`
-
-//     * `getId()`
-
-//     * `getEmail()`
-
-//     * `github` & mdash;GitHub username
-
-//         * `getGithub()`
-
-//         * `getRole()` & mdash; returns`'Employee'`
-
-//             * `getRole()` & mdash;overridden to return `'Engineer'`
-//     ])
-
-//     .then(answers)
-//     teamMemberList();
-// }
-
-// function intern() {
-//     inquirer.prompt([
-//     type: 'list',
-//     name: 'username',
-//     message: 'What team member do you want to add?',
-//     `name`
-
-//     * `id`
-
-//     * `email`
-
-//     * `getName()`
-
-//     * `getId()`
-
-//     * `getEmail()`
-
-//     * `school`
-
-//     * `getSchool()`
-
-//     * `getRole()` & mdash; returns`'Employee'`
-
-//         * `getRole()` & mdash;overridden to return `'Intern'`
-//     ])
-
-//     .then(answers)
-//     teamMemberList();
-// }
-
-// function finishTeam() {
-//     writeFile("./dist/team.html");
-// }
+teamMemberList();
