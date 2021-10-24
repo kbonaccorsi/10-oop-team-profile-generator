@@ -26,15 +26,19 @@
             <!-- Each team member has their own card of information -->
             <div class="card text-center border-light m-2 shadow-lg rounded">
                 <div class="card-header">
-                    <h2 class="memberName">Team Member's Name</h2>
+                    <h2 class="managerName">${managerName}</h2>
                     <h5 class="manager-card-title"><i class="fas fa-mug-hot"></i>Manager</h5>
                     <h5 class="engineer-card-title"><i class="fas fa-glasses"></i>Engineer</h5>
                     <h5 class="employee-card-title"><i class="fas fa-clipboard-list"></i>Employee</h5>
                     <h5 class="intern-card-title"><i class="fas fa-user-graduate"></i>Intern</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Information Listed</p>
-                    <a href="mailto: abc@example.com">Send Email</a>
+                    <ul class="managerInformation">
+                        <li class="managerId" id="managerId">Id:${response.manager.managerId}</li>
+                        <li class="managerEmail" id="managerEmail"><a href="mailto: abc@example.com">Email:${response.manager.managerEmail}</a></li>
+                        <li class="managerOfficeNumber" id="managerOfficeNumber">Office number:${response.manager.managerOfficeNumber}</li>
+                    </ul>
+                    
                 </div>
             </div>
             
@@ -45,3 +49,21 @@
 </body>
 
 </html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

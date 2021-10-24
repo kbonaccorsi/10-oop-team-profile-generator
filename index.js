@@ -2,15 +2,21 @@
 const inquirer = require('inquirer');
 const jest = require('jest');
 const fs = require('fs');
+// template being used to populate a dynamic html document
+const generateHtmlTemplate = require(`./src/generateHtmlTemplate.js`);
 //classes being used
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Employee = require('./lib/Employee');
 const Intern = require('./lib/Intern');
-// //final html being created
-const attempt = ('./src/template.js');
 //team needs to be an array to pull from for the cards
 const team = [];
+
+// begins the process: starts the html document, and prompts user for first team member
+function init() {
+    startHtml();
+    teamMemberList();
+}
 
 
 //prompt for adding team members
@@ -18,37 +24,37 @@ function teamMemberList() {
     inquirer.prompt([
         {
             type: 'list',
-            name: 'memberType',
+            name: 'role',
             message: 'Choose a teamate to add.',
-            choices: ["manager", "engineer", "employee", "intern", "done"],
+            choices: ['manager', 'engineer', 'employee', 'intern', 'done'],
+            
         }
     ])
         .then((response) => {
-            switch (response.memberType) {
-                case ("manager"): manager()
+            switch (response.role) {
+                case ('manager'): manager()
                     break;
-                case ("engineer"): engineer()
+                case ('engineer'): engineer()
                     break;
-                case ("employee"): employee()
+                case ('employee'): employee()
                     break;
-                case ("intern"): intern()
+                case ('intern'): intern()
                     break;
-                case ("done"): finishTeam()
+                case ('done'): finishTeamHtml()
                     break;
                 default:
             }
+
         });
 };
 
-function writeToFile(response) {
-    fs.writeFile(attempt, JSON.stringify(response, null, '\t'), (err) => {
-        err ? console.log(err) : console.log("Success!")
-    });
-}
-
-function appendFile(response) {
-    fs.appendFile(attempt, JSON.stringify(response, null, '\t'), (err) => {
-        err ? console.log(err) : console.log("Success!")
+function addHtml() {
+    //use template to html with user input going to the correct locations
+    //let format = generateHtmlTemplate(response);
+    //final html being created
+    const fileName = ('./dist/look.html');
+    fs.appendFile(fileName, JSON.stringify(team, null, '\t'), (err) => {
+        err ? console.log(err) : console.log('Success!')
     });
 }
 
@@ -81,11 +87,12 @@ function manager() {
     ])
         .then((response) => {
             //console.log(response);
-            const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOfficeNumber);
+            const managerRole = 'Manager';
+            let manager = new Manager(managerRole, response.managerName, response.managerId, response.managerEmail, response.managerOfficeNumber);
             //console.log(manager);
             team.push(manager);
             //console.log(team);
-            appendFile(response);
+            //addHtml();
             teamMemberList();
         });
 };
@@ -119,11 +126,12 @@ function engineer() {
     ])
         .then((response) => {
             //console.log(response);
-            const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+            const engineerRole = 'Engineer';
+            let engineer = new Engineer(engineerRole, response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
             //console.log(engineer);
             team.push(engineer);
             //console.log(team);
-            appendFile(response);
+            //addHtml();
             teamMemberList();
         });
 };
@@ -151,11 +159,12 @@ function employee() {
     ])
         .then((response) => {
             //console.log(response);
-            const employee = new Employee(response.employeeName, response.employeeId, response.employeeEmail);
+            const employeeRole = "Employee";
+            let employee = new Employee(employeeRole, response.employeeName, response.employeeId, response.employeeEmail);
             //console.log(employee);
             team.push(employee);
             //console.log(team);
-            appendFile(response);
+            //addHtml();
             teamMemberList();
         });
 };
@@ -164,43 +173,45 @@ function intern() {
     inquirer.prompt([
         {
             type: 'input',
-            name: 'InternName',
+            name: 'internName',
             message: 'What is the intern\'s name?',
             //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
         },
         {
             type: 'number',
-            name: 'InternId',
+            name: 'internId',
             message: 'What is the intern\'s id number?',
             //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
         },
         {
             type: 'input',
-            name: 'InternEmail',
+            name: 'internEmail',
             message: 'What is the intern\'s email address?',
             //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
         },
         {
             type: 'input',
-            name: 'InternSchool',
+            name: 'internSchool',
             message: 'What is the intern\'s school?',
             //validate example: value => value < 18 ? `Nightclub is 18+ only` : true
         },
     ])
         .then((response) => {
             //console.log(response);
-            const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
+            const internRole = 'Intern';
+            let intern = new Intern(internRole, response.internName, response.internId, response.internEmail, response.internSchool);
             //console.log(intern);
             team.push(intern);
             //console.log(team);
-            appendFile(response);
+            //addHtml();
             teamMemberList();
         });
 };
 
-function finishTeam() {
-    writeToFile(team);
-    console.log(`Team has been created: ${team}`);
+function finishTeamHtml() {
+    console.log(team);
+    addHtml();
+    console.log(`Team has been created: ${JSON.stringify(team)}`);
 };
 
 teamMemberList();
