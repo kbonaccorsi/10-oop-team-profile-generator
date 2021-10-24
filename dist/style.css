@@ -6,7 +6,7 @@ main {
 header {
     height: 25vh;
     width: 100vw;
-    background-color: rgb(67, 163, 139);
+    background-color: rgb(76, 167, 144);
     padding: 2vh;
     margin: 0 auto;
     float: none;
@@ -26,7 +26,7 @@ section {
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
     width: 30em;
-    background-color: rgb(190, 184, 184);
+    background-color: rgb(186, 201, 204);
 }
 
 .card-header {

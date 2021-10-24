@@ -38,7 +38,7 @@ function startHtml() {
     
     <body>
     
-        <main class="container-fluid vh-100">
+        <main class="container-fluid vh-auto">
             <!-- at the top of the page -->
             <header class="jumbotronHeader container-fluid text-center rounded">
                 <h1>My Team</h1>
@@ -108,7 +108,7 @@ function manager() {
             <div class="card text-center border-light m-2 shadow-lg rounded">
                 <div class="card-header">
                     <h2 class="managerName">${response.managerName}</h2>
-                    <h5 class="manager-card-title"><i class="fas fa-mug-hot"></i>Manager</h5>
+                    <h5 class="manager-card-title"><i class="fas fa-mug-hot"></i> Manager</h5>
                 </div>
                 <div class="card-body">
                     <ul class="managerInformation">
@@ -159,13 +159,13 @@ function engineer() {
             <div class="card text-center border-light m-2 shadow-lg rounded">
                 <div class="card-header">
                     <h2 class="engineerName">${response.engineerName}</h2>
-                    <h5 class="engineer-card-title"><i class="fas fa-glasses"></i>Engineer</h5>
+                    <h5 class="engineer-card-title"><i class="fas fa-glasses"></i> Engineer</h5>
                 </div>
                 <div class="card-body">
                     <ul class="engineerInformation">
                         <li class="engineerId" id="engineerId">Id: ${response.engineerId}</li>
                         <li class="engineerEmail" id="engineerEmail">Email: <a href="mailto: ${response.engineerEmail}">${response.engineerEmail}</a></li>
-                        <li class="engineerGitHub" id="engineerGitHub">GitHub: <a href="https://github.com/${response.engineerGithub}" target="_blank">${response.engineerGithub}</li>
+                        <li class="engineerGitHub" id="engineerGitHub">GitHub: <a href="https://github.com/${response.engineerGithub}" target="_blank">${response.engineerGithub}</a></li>
                     </ul>
                 </div>
             </div>
@@ -210,7 +210,7 @@ function intern() {
             <div class="card text-center border-light m-2 shadow-lg rounded">
                 <div class="card-header">
                     <h2 class="internName">${response.internName}</h2>
-                    <h5 class="intern-card-title"><i class="fas fa-user-graduate"></i>Intern</h5>
+                    <h5 class="intern-card-title"><i class="fas fa-user-graduate"></i> Intern</h5>
                 </div>
                 <div class="card-body">
                     <ul class="internInformation">
