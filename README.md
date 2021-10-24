@@ -6,7 +6,9 @@
   A Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person.
   
   walkthrough video: https://watch.screencastify.com/v/VUYEcu2T9OYTvehNk5uM
+  
   git hub repo: https://github.com/kbonaccorsi/10-oop-team-profile-generator
+  
   sample HTML: ![127 0 0 1_5500_dist_myteam html](https://user-images.githubusercontent.com/86372011/138600371-2de5e32c-f21a-40d8-a0c3-5a16b3756500.png)
 
   
